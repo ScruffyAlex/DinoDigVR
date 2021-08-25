@@ -14,14 +14,15 @@ public class BlockManager : MonoBehaviour
         STONE2
     }
 
-    string materialType;
     string currentCollision;
 
     public RockType currentType;
     public float health;
     public string[] tagNames = { "Spoon", "Shovel", "Pickaxe", "Drill"};
+
     void Start()
     {
+
         switch (currentType)
         {
             case RockType.DIRT:

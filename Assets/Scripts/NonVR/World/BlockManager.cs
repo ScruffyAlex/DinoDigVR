@@ -14,11 +14,11 @@ public class BlockManager : MonoBehaviour
         STONE2
     }
 
-    string currentCollision;
+    //string objectType;
 
     public RockType currentType;
     public float health;
-    public string[] tagNames = { "Spoon", "Shovel", "Pickaxe", "Drill"};
+    public string[] tagNames = { "Spoon", "Shovel", "Pickaxe", "Hammer"};
 
     void Start()
     {
@@ -48,28 +48,23 @@ public class BlockManager : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        currentCollision = collision.collider.tag;
 
-        collisionHandler();
-        DestroyMaterial();
-
-
-        //    if (collision.gameObject.tag == "Shovel")
-        //    {
-        //        //If the GameObject has the same tag as specified, output this message in the console
-        //        health -= 1;
-        //        DestroyMaterial();
-        //    }
-    }
-
-   private void DestroyMaterial()
+   public void DestroyMaterial()
     {
         if(health <= 0)
         {
+            if (this.GetComponent<Spawner>())
+            {
+                this.GetComponent<Spawner>().SpawnBone();
+                Destroy(gameObject);
+                Debug.Log("Destroy and Spawn bone");
+            }
+            else
+            {
             Destroy(gameObject);
             Debug.Log("Destroyed");
+
+            }
         }
         else
         {
@@ -77,98 +72,98 @@ public class BlockManager : MonoBehaviour
         }
     }
 
-    private void collisionHandler()
+    public void collisionHandler(RockType blockType, string objectType)
     {
-        switch (currentType)
+        switch (blockType)
         {
             case RockType.NONE:
                 break;
             case RockType.DIRT:
-                if(currentCollision == "Spoon")
+                if(objectType == "Spoon")
                 {
                     health -= 1;
                     Debug.Log("Spoon");
                 }
-                else if (currentCollision == "Shovel")
+                else if (objectType == "Shovel")
                 {
                     health -= 3;
                     Debug.Log("Shovel");
                 }
-                else if (currentCollision == "Pickaxe")
+                else if (objectType == "Pickaxe")
                 {
                     health -= 0.5f;
                     Debug.Log("Pickaxe");
                 }
-                else if (currentCollision == "Drill")
+                else if (objectType == "Hammer")
                 {
                     health -= 0.2f;
-                    Debug.Log("Drill");
+                    Debug.Log("Hammer");
                 }
                 break;
             case RockType.MUD:
-                if (currentCollision == "Spoon")
+                if (objectType == "Spoon")
                 {
                     health -= 0.5f;
                     Debug.Log("Spoon");
                 }
-                else if (currentCollision == "Shovel")
+                else if (objectType == "Shovel")
                 {
                     health -= 3;
                     Debug.Log("Shovel");
                 }
-                else if (currentCollision == "Pickaxe")
+                else if (objectType == "Pickaxe")
                 {
                     health -= 0f;
                     Debug.Log("Pickaxe");
                 }
-                else if (currentCollision == "Drill")
+                else if (objectType == "Hammer")
                 {
                     health -= 0f;
-                    Debug.Log("Drill");
+                    Debug.Log("Hammer");
                 }
                 break;
             case RockType.STONE:
-                if (currentCollision == "Spoon")
+                if (objectType == "Spoon")
                 {
                     health -= 0.1f;
                     Debug.Log("Spoon");
                 }
-                else if (currentCollision == "Shovel")
+                else if (objectType == "Shovel")
                 {
                     health -= 0.5f;
                     Debug.Log("Shovel");
                 }
-                else if (currentCollision == "Pickaxe")
+                else if (objectType == "Pickaxe")
                 {
                     health -= 2;
                     Debug.Log("Pickaxe");
                 }
-                else if (currentCollision == "Drill")
+                else if (objectType == "Hammer")
                 {
                     health -= 1f;
-                    Debug.Log("Drill");
+                    Debug.Log("Hammer");
                 }
                 break;
             case RockType.STONE2:
-                if (currentCollision == "Spoon")
+                if (objectType == "Spoon")
                 {
                     health -= 0;
                     Debug.Log("Spoon");
                 }
-                else if (currentCollision == "Shovel")
+                else if (objectType == "Shovel")
                 {
                     health -= 0;
                     Debug.Log("Shovel");
                 }
-                else if (currentCollision == "Pickaxe")
+                else if (objectType == "Pickaxe")
                 {
                     health -= 0.5f;
                     Debug.Log("Pickaxe");
                 }
-                else if (currentCollision == "Drill")
+                else if (objectType == "Hammer")
                 {
                     health -= 2f;
-                    Debug.Log("Drill");
+                    Debug.Log("Hammer");
                 }
                 break;
             default:

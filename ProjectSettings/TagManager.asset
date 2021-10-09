@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Shovel
   - Pickaxe
+  - Hammer
+  - Block
   layers:
   - Default
   - TransparentFX

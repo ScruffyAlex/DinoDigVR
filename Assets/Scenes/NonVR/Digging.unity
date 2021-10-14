@@ -2107,6 +2107,12 @@ MonoBehaviour:
   Pickaxe: {fileID: 1121501225}
   Drill: {fileID: 1738803218}
   curTool: Shovel
+--- !u!4 &525753132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4523949601039576477, guid: 8d5ee8a924488f0458c3c5d00a9d72a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1550106116}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &621971561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3943,6 +3949,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3dd87b4f8a58574c8cb32eb6a0e4962, type: 3}
+--- !u!1001 &1454876960
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 525753132}
+    m_Modifications:
+    - target: {fileID: 100008, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_Name
+      value: OVRPlayerController
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
 --- !u!1 &1492592903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4260,6 +4327,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 525753128}
+    - target: {fileID: 4523949600073137435, guid: 8d5ee8a924488f0458c3c5d00a9d72a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4523949601039576477, guid: 8d5ee8a924488f0458c3c5d00a9d72a4,
         type: 3}
       propertyPath: m_RootOrder
@@ -4288,7 +4360,7 @@ PrefabInstance:
     - target: {fileID: 4523949601039576477, guid: 8d5ee8a924488f0458c3c5d00a9d72a4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4523949601039576477, guid: 8d5ee8a924488f0458c3c5d00a9d72a4,
         type: 3}
@@ -4298,7 +4370,7 @@ PrefabInstance:
     - target: {fileID: 4523949601039576477, guid: 8d5ee8a924488f0458c3c5d00a9d72a4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4523949601039576477, guid: 8d5ee8a924488f0458c3c5d00a9d72a4,
         type: 3}

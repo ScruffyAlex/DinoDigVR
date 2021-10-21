@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
-
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -45,18 +45,19 @@ public class ChunkRenderer : MonoBehaviour
         mesh.Clear();
 
         mesh.subMeshCount = 2;
-        mesh.vertices = meshData.verticies.Concat(meshData.waterMesh.verticies).ToArray();
+        mesh.vertices = meshData.vertices.Concat(meshData.waterMesh.vertices).ToArray();
 
         mesh.SetTriangles(meshData.triangles.ToArray(), 0);
-        mesh.SetTriangles(meshData.waterMesh.triangles.Select(val => val + meshData.verticies.Count).ToArray(), 1);
+        mesh.SetTriangles(meshData.waterMesh.triangles.Select(val => val + meshData.vertices.Count).ToArray(), 1);
 
-        mesh.uv = meshData.uv.Concat(meshData.uv).ToArray();
+        mesh.uv = meshData.uv.Concat(meshData.waterMesh.uv).ToArray();
         mesh.RecalculateNormals();
 
-        meshCollider.sharedMaterial = null;
+        meshCollider.sharedMesh = null;
         Mesh collisionMesh = new Mesh();
-        collisionMesh.vertices = meshData.colliderVerticies.ToArray();
+        collisionMesh.vertices = meshData.colliderVertices.ToArray();
         collisionMesh.triangles = meshData.colliderTriangles.ToArray();
+        collisionMesh.RecalculateNormals();
 
         meshCollider.sharedMesh = collisionMesh;
     }
@@ -74,20 +75,18 @@ public class ChunkRenderer : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if(showGizmo)
+        if (showGizmo)
         {
-            if(Application.isPlaying && ChunkData != null)
+            if (Application.isPlaying && ChunkData != null)
             {
-                Gizmos.color = new Color(0, 1, 0, 0.4f);
-            }
-            else
-            {
-                Gizmos.color = new Color(1, 0, 1, 0.4f);
-            }
+                if (Selection.activeObject == gameObject)
+                    Gizmos.color = new Color(0, 1, 0, 0.4f);
+                else
+                    Gizmos.color = new Color(1, 0, 1, 0.4f);
 
-            Gizmos.DrawCube(transform.position + new Vector3(ChunkData.chunkSize / 2f, ChunkData.chunkHeight / 2f, ChunkData.chunkSize /2f), new Vector3(ChunkData.chunkSize, ChunkData.chunkHeight, ChunkData.chunkSize));
+                Gizmos.DrawCube(transform.position + new Vector3(ChunkData.chunkSize / 2f, ChunkData.chunkHeight / 2f, ChunkData.chunkSize / 2f), new Vector3(ChunkData.chunkSize, ChunkData.chunkHeight, ChunkData.chunkSize));
+            }
         }
     }
-
 #endif
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class World : MonoBehaviour
 {
@@ -15,14 +16,18 @@ public class World : MonoBehaviour
     Dictionary<Vector3Int, ChunkData> chunkDataDictionary = new Dictionary<Vector3Int, ChunkData>();
     Dictionary<Vector3Int, ChunkRenderer> chunkDictionary = new Dictionary<Vector3Int, ChunkRenderer>();
 
+    public UnityEvent OnWorldCreated, OnNewChunksGenerated;
+
     public void GenerateWorld()
     {
-        chunkDataDictionary.Clear();
-        foreach (ChunkRenderer chunk in chunkDictionary.Values)
-        {
-            Destroy(chunk.gameObject);
-        }
-        chunkDictionary.Clear();
+        //chunkDataDictionary.Clear();
+        //foreach (ChunkRenderer chunk in chunkDictionary.Values)
+        //{
+        //    Destroy(chunk.gameObject);
+        //}
+        //chunkDictionary.Clear();
+
+        WorldGenerationData worldGenerationData = GetPositionsThatPlayerSees(Vector3Int.zero);
 
         for (int x = 0; x < mapSizeInChunks; x++)
         {
@@ -50,11 +55,18 @@ public class World : MonoBehaviour
             chunkRenderer.UpdateChunk(meshData);
 
         }
+        OnWorldCreated?.Invoke();
+    }
+
+    internal void LoadAdditionalChunksRequest(GameObject player)
+    {
+        Debug.Log("Load more chunks");
+        OnNewChunksGenerated?.Invoke();
     }
 
     private void GenerateVoxels(ChunkData data)
     {
-        
+
     }
 
     internal BlockType GetBlockFromChunkCoordinates(ChunkData chunkData, int x, int y, int z)
@@ -68,5 +80,14 @@ public class World : MonoBehaviour
             return BlockType.Nothing;
         Vector3Int blockInCHunkCoordinates = Chunk.GetBlockInChunkCoordinates(containerChunk, new Vector3Int(x, y, z));
         return Chunk.GetBlockFromChunkCoordinates(containerChunk, blockInCHunkCoordinates);
+    }
+
+    public struct WorldGenerationData
+    {
+        public List<Vector3Int> chunkPositionsToCreate;
+        public List<Vector3Int> chunkDataPositionsToCreate;
+        public List<Vector3Int> chunkPositionsToRemove;
+        public List<Vector3Int> chunkDataToRemove;
+        public List<Vector3Int> chunkPositionsToUpdate;
     }
 }

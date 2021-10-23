@@ -983,6 +983,7 @@ MonoBehaviour:
   Next: {fileID: 0}
   stoneThreshold: 0.5
   stoneNoiseSettings: {fileID: 11400000, guid: 825daf6cedc708b499186cf00cfa7d0b, type: 2}
+  domainWarping: {fileID: 877851508}
 --- !u!1 &1204639637
 GameObject:
   m_ObjectHideFlags: 0

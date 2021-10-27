@@ -24,6 +24,13 @@ public class Character : MonoBehaviour
 
     public World world;
 
+    Ray playerRay;
+    RaycastHit hit;
+    public string blockName;
+
+
+
+
     private void Awake()
     {
         if (mainCamera == null)
@@ -46,13 +53,14 @@ public class Character : MonoBehaviour
 
     void Update()
     {
+
+        //CheckRay();
         if (fly)
         {
             animator.SetFloat("speed", 0);
             animator.SetBool("isGrounded", false);
             animator.ResetTrigger("jump");
             playerMovement.Fly(playerInput.MovementInput, playerInput.IsJumping, playerInput.RunningPressed);
-
         }
         else
         {
@@ -67,8 +75,6 @@ public class Character : MonoBehaviour
             animator.SetFloat("speed", playerInput.MovementInput.magnitude);
             playerMovement.HandleGravity(playerInput.IsJumping);
             playerMovement.Walk(playerInput.MovementInput, playerInput.RunningPressed);
-
-
         }
 
     }
@@ -82,20 +88,89 @@ public class Character : MonoBehaviour
     private void HandleMouseClick()
     {
         Ray playerRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-        RaycastHit hit;
+        //RaycastHit hit;
+        string rayblock;
+
         if (Physics.Raycast(playerRay, out hit, interactionRayLength, groundMask))
         {
+            rayblock = CheckRay();
+
+            switch(rayblock)
+            {
+                case "":
+                    break;
+                case "DinoStone":
+                    Debug.Log("Dino_Stone Struck");
+                    break;
+
+            }
+
             ModifyTerrain(hit);
         }
 
     }
+
+    //Nothing,
+    //Air,
+    //Grass_Dirt,
+    //Dirt,
+    //Grass_Stone,
+    //Stone,
+    //TreeTrunk,
+    //TreeLeafesTransparent,
+    //TreeLeafsSolid,
+    //Water,
+    //Sand,
+    //DinoStone
 
     private void ModifyTerrain(RaycastHit hit)
     {
         world.SetBlock(hit, BlockType.Air);
     }
 
+    public string CheckRay()
+    {
+        BlockType current;
+        playerRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 
+        //RaycastHit hit;
+        if (Physics.Raycast(playerRay, out hit, interactionRayLength, groundMask))//Physics.Raycast(playerRay, out hit, 100))
+        {
 
+            ChunkRenderer chunk = hit.collider.GetComponent<ChunkRenderer>();
+            if (chunk == null)
+            {
+                Debug.Log("No Chunk");
+            }
+            else
+            {
+
+                Debug.Log("There's a Chunk");
+                Debug.Log(chunk.ChunkData.blocks.Length);
+                Vector3Int pos = world.GetBlockPos(hit);
+
+                current = world.GetBlockFromChunkCoordinates(chunk.ChunkData, pos.x, pos.y, pos.z);
+                Debug.Log(current.ToString());
+                return current.ToString();
+
+                //if (hit.collider.transform.tag != "Untagged")
+                //{
+                //    lastHit = hit.collider.transform.gameObject;
+                //    Debug.Log(hit.collider.transform.tag);
+                //    RayHitManager(hit.collider.transform.tag, pos);
+
+                //    if (Input.GetMouseButtonDown(0))
+                //    {
+                //        currentObject = player.GetComponent<PlayerMove>().curTool;
+                //        HitBlock();
+                //    }
+
+                //}
+                //Debug.Log(hit.collider.transform.tag);
+                //return true;
+            }
+        }
+        return "";
+    }
 
 }

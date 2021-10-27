@@ -94,7 +94,7 @@ public class World : MonoBehaviour
 
         Vector3Int pos = GetBlockPos(hit);
 
-        WorldDataHelper.SetBlock(chunk.ChunkData.worldReference, pos, blockType);
+        WorldDataHelper.SetBlock(chunk.ChunkData.worldReference, pos, blockType, "");
         chunk.ModifiedByThePlayer = true;
 
         if (Chunk.IsOnEdge(chunk.ChunkData, pos))
@@ -114,7 +114,7 @@ public class World : MonoBehaviour
         return true;
     }
 
-    private Vector3Int GetBlockPos(RaycastHit hit)
+    public Vector3Int GetBlockPos(RaycastHit hit)
     {
         Vector3 pos = new Vector3(
              GetBlockPositionIn(hit.point.x, hit.normal.x),

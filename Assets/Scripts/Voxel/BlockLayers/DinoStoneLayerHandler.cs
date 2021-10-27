@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoneLayerHandler : BlockLayerHandler
+public class DinoStoneLayerHandler : BlockLayerHandler
 {
     [Range(0, 1)]
-    public float stoneThreshold = 0.5f;
+    public float dinoThreshold = 0.5f;
 
     [SerializeField]
-    private NoiseSettings stoneNoiseSettings;
+    private NoiseSettings dinoNoiseSettings;
 
     public DomainWarping domainWarping;
 
@@ -17,10 +17,10 @@ public class StoneLayerHandler : BlockLayerHandler
         if (chunkData.worldPosition.y > surfaceHeightNoise)
             return false;
 
-        stoneNoiseSettings.worldOffset = mapSeedOffset;
+        dinoNoiseSettings.worldOffset = mapSeedOffset;
         // float stoneNoise = MyNoise.OctavePerlin(chunkData.worldPosition.x + x, chunkData.worldPosition.z + z, stoneNoiseSettings);
 
-        float stoneNoise = domainWarping.GenerateDomainNoise(chunkData.worldPosition.x + x, chunkData.worldPosition.z + z, stoneNoiseSettings);
+        float dinoNoise = domainWarping.GenerateDomainNoise(chunkData.worldPosition.x + x, chunkData.worldPosition.z + z, dinoNoiseSettings);
 
         int endPosition = surfaceHeightNoise;
         if (chunkData.worldPosition.y < 0)
@@ -28,12 +28,12 @@ public class StoneLayerHandler : BlockLayerHandler
             endPosition = chunkData.worldPosition.y + chunkData.chunkHeight;
         }
 
-        if (stoneNoise > stoneThreshold)
+        if (dinoNoise > dinoThreshold)
         {
             for (int i = chunkData.worldPosition.y; i <= endPosition; i++)
             {
                 Vector3Int pos = new Vector3Int(x, i, z);
-                Chunk.SetBlock(chunkData, pos, BlockType.Stone, "Stone");
+                Chunk.SetBlock(chunkData, pos, BlockType.DinoStone, "Dinostone");
             }
             return true;
         }

@@ -10,7 +10,7 @@ public class SurfaceLayerHandler : BlockLayerHandler
         if (y == surfaceHeightNoise)
         {
             Vector3Int pos = new Vector3Int(x, y, z);
-            Chunk.SetBlock(chunkData, pos, surfaceBlockType);
+            Chunk.SetBlock(chunkData, pos, surfaceBlockType, "surface");
             return true;
         }
         return false;

@@ -10,7 +10,7 @@ public class UndergroundLayerHandler : BlockLayerHandler
         if (y < surfaceHeightNoise)
         {
             Vector3Int pos = new Vector3Int(x, y, z);
-            Chunk.SetBlock(chunkData, pos, undergroundBlockType);
+            Chunk.SetBlock(chunkData, pos, undergroundBlockType, "underground");
             return true;
         }
         return false;

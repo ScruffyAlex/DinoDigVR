@@ -14,5 +14,6 @@ public enum BlockType
     TreeLeafesTransparent,
     TreeLeafsSolid,
     Water,
-    Sand
+    Sand,
+    DinoStone
 }

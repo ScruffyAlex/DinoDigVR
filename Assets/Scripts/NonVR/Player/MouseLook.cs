@@ -73,6 +73,7 @@ public class MouseLook : MonoBehaviour
     {
         if (tag.Equals("Block"))
         {
+            Debug.Log(tag);
            objectEnum = objectHit.GetComponent<BlockManager>().currentType;
            Debug.Log(objectHit.GetComponent<BlockManager>().currentType.ToString());
             

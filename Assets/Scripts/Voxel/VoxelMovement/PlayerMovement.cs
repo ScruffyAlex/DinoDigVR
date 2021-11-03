@@ -26,11 +26,21 @@ public class PlayerMovement : MonoBehaviour
     [field: SerializeField]
     public bool IsGrounded { get; private set; }
 
-
+    public GameObject Shovel;
+    public GameObject Pickaxe;
+    public GameObject Drill;
+    public string curTool = "Shovel";
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        Shovel.SetActive(true);
+        Pickaxe.SetActive(false);
+        Drill.SetActive(false);
     }
 
     private Vector3 GetMovementDirection(Vector3 movementInput)
@@ -87,10 +97,41 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         IsGrounded = Physics.Raycast(transform.position, Vector3.down, rayDistance, groundMask);
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Shovel.SetActive(true);
+            Pickaxe.SetActive(false);
+            Drill.SetActive(false);
+            curTool = "Shovel";
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Shovel.SetActive(false);
+            Pickaxe.SetActive(true);
+            Drill.SetActive(false);
+            curTool = "Pickaxe";
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Shovel.SetActive(false);
+            Pickaxe.SetActive(false);
+            Drill.SetActive(true);
+            curTool = "Hammer";
+            
+        }
+        
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(transform.position, Vector3.down * rayDistance);
+    }
+
+    public string WhatTool()
+    {
+        return curTool;
     }
 }

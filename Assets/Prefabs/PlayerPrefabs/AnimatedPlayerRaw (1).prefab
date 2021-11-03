@@ -2112,6 +2112,8 @@ MonoBehaviour:
   fly: 0
   animator: {fileID: 6085000923444328969}
   world: {fileID: 0}
+  blockName: 
+  bone1: {fileID: 4943026393367729771, guid: 18cdeb82e935406469fd3a3f3d385b5f, type: 3}
 --- !u!114 &6085000923734965644
 MonoBehaviour:
   m_ObjectHideFlags: 0

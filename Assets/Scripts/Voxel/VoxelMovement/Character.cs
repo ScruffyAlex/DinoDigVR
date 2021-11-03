@@ -15,7 +15,6 @@ public class Character : MonoBehaviour
 
     public LayerMask groundMask;
 
-
     public bool fly = false;
 
     public Animator animator;
@@ -27,6 +26,13 @@ public class Character : MonoBehaviour
     Ray playerRay;
     RaycastHit hit;
     public string blockName;
+
+    public DinoBlockManager dinoStoneCheck;
+
+    public float jump = 10f;
+    public float Gravity = -9.8f;
+
+    public string curTool;
 
 
 
@@ -44,6 +50,7 @@ public class Character : MonoBehaviour
     {
         playerInput.OnMouseClick += HandleMouseClick;
         playerInput.OnFly += HandleFlyClick;
+        DinoBlockManager dinoStoneCheck = gameObject.GetComponent<DinoBlockManager>();
     }
 
     private void HandleFlyClick()
@@ -85,22 +92,30 @@ public class Character : MonoBehaviour
         isWaiting = false;
     }
 
+
+    //take logic and instead make based off a collider
     private void HandleMouseClick()
     {
         Ray playerRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         //RaycastHit hit;
         string rayblock;
 
+
         if (Physics.Raycast(playerRay, out hit, interactionRayLength, groundMask))
         {
+            Vector3 hitpoint = hit.point;
+
             rayblock = CheckRay();
 
             switch(rayblock)
             {
+
                 case "":
                     break;
                 case "DinoStone":
                     Debug.Log("Dino_Stone Struck");
+
+                    dinoStoneCheck.RanSpawn(hitpoint);
                     break;
 
             }
@@ -152,22 +167,6 @@ public class Character : MonoBehaviour
                 current = world.GetBlockFromChunkCoordinates(chunk.ChunkData, pos.x, pos.y, pos.z);
                 Debug.Log(current.ToString());
                 return current.ToString();
-
-                //if (hit.collider.transform.tag != "Untagged")
-                //{
-                //    lastHit = hit.collider.transform.gameObject;
-                //    Debug.Log(hit.collider.transform.tag);
-                //    RayHitManager(hit.collider.transform.tag, pos);
-
-                //    if (Input.GetMouseButtonDown(0))
-                //    {
-                //        currentObject = player.GetComponent<PlayerMove>().curTool;
-                //        HitBlock();
-                //    }
-
-                //}
-                //Debug.Log(hit.collider.transform.tag);
-                //return true;
             }
         }
         return "";

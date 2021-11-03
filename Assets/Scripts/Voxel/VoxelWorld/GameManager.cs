@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     float detectionTime = 1;
     public Camera mainCam;
 
-
+    public void Start()
+    {
+        world.GenerateWorld();
+    }
     public void SpawnPlayer()
     {
         if(player != null)

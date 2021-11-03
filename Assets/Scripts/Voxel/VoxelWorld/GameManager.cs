@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameState.TITLE:
-                Time.timeScale = 1;
+                Time.timeScale = 1; 
                 break;
             case GameState.BIOMECHOOSE:
                 biomeSelect.SetActive(true);

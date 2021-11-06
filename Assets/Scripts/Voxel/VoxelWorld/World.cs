@@ -113,6 +113,37 @@ public class World : MonoBehaviour
         chunk.UpdateChunk();
         return true;
     }
+    
+
+    internal bool SetBlockCollision(Collision collision, BlockType blockType)
+    {
+        Debug.Log("In set block collision");
+        ChunkRenderer chunk = collision.collider.GetComponent<ChunkRenderer>();
+        if (chunk == null)
+            return false;
+
+        Vector3Int pos = GetBlockPosCollision(collision);
+
+        WorldDataHelper.SetBlock(chunk.ChunkData.worldReference, pos, blockType, "");
+        chunk.ModifiedByThePlayer = true;
+
+        if (Chunk.IsOnEdge(chunk.ChunkData, pos))
+        {
+            List<ChunkData> neighbourDataList = Chunk.GetEdgeNeighbourChunk(chunk.ChunkData, pos);
+            foreach (ChunkData neighbourData in neighbourDataList)
+            {
+                //neighbourData.modifiedByThePlayer = true;
+                ChunkRenderer chunkToUpdate = WorldDataHelper.GetChunk(neighbourData.worldReference, neighbourData.worldPosition);
+                if (chunkToUpdate != null)
+                    chunkToUpdate.UpdateChunk();
+            }
+
+        }
+
+        chunk.UpdateChunk();
+        Debug.Log("Chunk Updated");
+        return true;
+    }
 
     public Vector3Int GetBlockPos(RaycastHit hit)
     {
@@ -120,6 +151,17 @@ public class World : MonoBehaviour
              GetBlockPositionIn(hit.point.x, hit.normal.x),
              GetBlockPositionIn(hit.point.y, hit.normal.y),
              GetBlockPositionIn(hit.point.z, hit.normal.z)
+             );
+
+        return Vector3Int.RoundToInt(pos);
+    }
+
+    public Vector3Int GetBlockPosCollision(Collision collision)
+    {
+        Vector3 pos = new Vector3(
+             GetBlockPositionIn(collision.contacts[0].point.x, collision.contacts[0].point.normalized.x),
+             GetBlockPositionIn(collision.contacts[0].point.y, collision.contacts[0].point.normalized.y),
+             GetBlockPositionIn(collision.contacts[0].point.z, collision.contacts[0].point.normalized.z)
              );
 
         return Vector3Int.RoundToInt(pos);

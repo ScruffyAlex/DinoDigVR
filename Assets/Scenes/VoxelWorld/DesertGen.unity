@@ -526,6 +526,12 @@ PrefabInstance:
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 5444441050641545501}
+    - target: {fileID: 1357698040783048393, guid: 6de9c2cf84380e14294b076c7b1041d0,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 7221227518349140196, guid: aa768c476f43d1a499fbdc3af3c71aa8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de9c2cf84380e14294b076c7b1041d0, type: 3}
 --- !u!114 &1070502140 stripped

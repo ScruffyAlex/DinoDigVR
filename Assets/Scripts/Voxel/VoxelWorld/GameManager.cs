@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
 
-    public static GameState currentState = GameState.TITLE;
+    public static GameState currentState = GameState.GAME;
 
     public GameObject biomeIcon1;
     public GameObject biomeIcon2;

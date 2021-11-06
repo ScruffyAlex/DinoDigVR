@@ -14,7 +14,7 @@ public class VRCollision : MonoBehaviour
     public LayerMask groundMask;
 
     Ray playerRay;
-    RaycastHit hit;
+    //RaycastHit hit;
     public string blockName;
 
     public DinoBlockManager dinoStoneCheck;
@@ -25,64 +25,35 @@ public class VRCollision : MonoBehaviour
         world = FindObjectOfType<World>();
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
+    
 
-        Ray playerRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-        //RaycastHit hit;
-        string rayblock;
+    //public string CheckCollision(Vecto)
+    //{
+    //    BlockType current;
+    //    playerRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 
-        if (Physics.Raycast(playerRay, out hit, interactionRayLength, groundMask))
-        {
-            Vector3 hitpoint = hit.point;
+    //    //if (Physics.Raycast(playerRay, out hit, interactionRayLength, groundMask))//Check for a collision
+    //    if()//check for physical collision
+    //    {
 
-            rayblock = CheckRay();
+    //        ChunkRenderer chunk = hit.collider.GetComponent<ChunkRenderer>();
+    //        if (chunk == null)
+    //        {
+    //            Debug.Log("No Chunk");
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("There's a Chunk");
+    //            Debug.Log(chunk.ChunkData.blocks.Length);
+    //            Vector3Int pos = world.GetBlockPos(hit);
 
-            switch (rayblock)
-            {
-
-                case "":
-                    break;
-                case "DinoStone":
-                    Debug.Log("Dino_Stone Struck");
-
-                    dinoStoneCheck.RanSpawn(hitpoint);
-                    break;
-
-            }
-
-            ModifyTerrain(hit);
-        }
-
-    }
-
-    public string CheckRay()
-    {
-        BlockType current;
-        playerRay = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-
-        //RaycastHit hit;
-        if (Physics.Raycast(playerRay, out hit, interactionRayLength, groundMask))//Physics.Raycast(playerRay, out hit, 100))
-        {
-
-            ChunkRenderer chunk = hit.collider.GetComponent<ChunkRenderer>();
-            if (chunk == null)
-            {
-                Debug.Log("No Chunk");
-            }
-            else
-            {
-                Debug.Log("There's a Chunk");
-                Debug.Log(chunk.ChunkData.blocks.Length);
-                Vector3Int pos = world.GetBlockPos(hit);
-
-                current = world.GetBlockFromChunkCoordinates(chunk.ChunkData, pos.x, pos.y, pos.z);
-                Debug.Log(current.ToString());
-                return current.ToString();
-            }
-        }
-        return "";
-    }
+    //            current = world.GetBlockFromChunkCoordinates(chunk.ChunkData, pos.x, pos.y, pos.z);
+    //            Debug.Log(current.ToString());
+    //            return current.ToString();
+    //        }
+    //    }
+    //    return "";
+    //}
 
     private void ModifyTerrain(RaycastHit hit)
     {

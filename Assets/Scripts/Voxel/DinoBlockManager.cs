@@ -15,11 +15,12 @@ public class DinoBlockManager : MonoBehaviour
     GameObject newbone;
     Vector3 whereHit;
     Vector3 spawnLocation;
+    public Transform panelLocation;
 
     public void RanSpawn(Vector3 hitpoint)
     {
         whereHit = hitpoint;
-        spawnLocation = hitpoint;
+        spawnLocation = panelLocation.position;
         int spawnNum = Random.Range(1, 5);
         {
            Debug.Log("Spawn Number" + spawnNum);

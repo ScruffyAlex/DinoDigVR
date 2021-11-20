@@ -17,7 +17,7 @@ public class VRCollision : MonoBehaviour
     //RaycastHit hit;
     public string blockName;
 
-    public DinoBlockManager dinoStoneCheck;
+    //public DinoBlockManager dinoStoneCheck;
 
     //take logic and instead make based off a collider
     private void Awake()

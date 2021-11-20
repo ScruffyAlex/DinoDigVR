@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public static GameState currentState = GameState.GAME;
 
+    public Camera gameCamera;
+
     public GameObject biomeIcon1;
     public GameObject biomeIcon2;
     public GameObject mainTitle;
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
         {
             world.GenerateWorld();
         }
+
+        
     }
     public void SpawnPlayer()
     {

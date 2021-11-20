@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;
+using TMPro;
 
 public class Pickup : MonoBehaviour
 {
+    public BoneData boneData;
+
+    public OVRPlayerController curPlayer;
+
+    InfoManager info;
 
     Collision currentcollision;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -22,7 +28,7 @@ public class Pickup : MonoBehaviour
     {
         if (collide.tag == "Player")
         {
-            Destroy(gameObject);
+            collide.GetComponentInChildren<InfoManager>().GetInfo(boneData.name, boneData.ScientificName, boneData.CreatureFact);
         }
         Debug.Log("Entered");
     }

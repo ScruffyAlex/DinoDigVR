@@ -322,11 +322,15 @@ public class OVRPlayerController : MonoBehaviour
 
 	public virtual void UpdateMovement()
 	{
+
+		if (OVRInput.Get(OVRInput.Button.One)) Jump();
 		if (HaltUpdateMovement)
 			return;
 
 		if (EnableLinearMovement)
 		{
+			
+
 			bool moveForward = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
 			bool moveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
 			bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);

@@ -30,7 +30,7 @@ public class Pickup : MonoBehaviour
         {
             collide.GetComponentInChildren<InfoManager>().GetInfo(boneData.name, boneData.ScientificName, boneData.CreatureFact);
         }
-        Debug.Log("Entered");
+        //Debug.Log("Entered");
     }
 
     private void DestroyMaterial()

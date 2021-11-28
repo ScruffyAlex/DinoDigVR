@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
 
-    public static GameState currentState = GameState.GAME;
+    public static GameState currentState = GameState.MUSEUM;
 
     public Camera gameCamera;
 
@@ -28,9 +28,10 @@ public class GameManager : MonoBehaviour
     public GameObject biomeSelect;
     public GameObject aboutPage;
     public GameObject pausePanel;
-
+     
     public enum GameState
     {
+       BEFORETITLE,
        TITLE,
        BIOMECHOOSE,
        GAME,
@@ -104,14 +105,23 @@ public class GameManager : MonoBehaviour
 
         switch (currentState)
         {
-            case GameState.TITLE:
-                Time.timeScale = 1; 
+            case GameState.BEFORETITLE:
+                currentState = GameState.TITLE;
                 break;
+
+            case GameState.TITLE:
+                Time.timeScale = 1;
+                mainTitle.SetActive(true);
+                aboutPage.SetActive(false);
+                biomeSelect.SetActive(false);
+                biomeIcon1.SetActive(false);
+                break;
+
             case GameState.BIOMECHOOSE:
                 biomeSelect.SetActive(true);
                 mainTitle.SetActive(false);
                 biomeIcon1.SetActive(true);
-                biomeIcon2.SetActive(true);
+                //biomeIcon2.SetActive(true);
                 break;
             case GameState.GAME:
                 Time.timeScale = 1;
@@ -171,9 +181,14 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToTitle()
     {
-        currentState = GameState.TITLE;
         SceneManager.LoadScene("MainMenu");
+        currentState = GameState.BEFORETITLE;
 
+    }
+
+    public void MainMenuOpen()
+    {
+        currentState = GameState.TITLE;
     }
 
     public void ReturnToGame()

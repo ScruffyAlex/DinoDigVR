@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BonePickUp : MonoBehaviour
 {
+    public AudioSource pickUpNoise;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,7 @@ public class BonePickUp : MonoBehaviour
             }
            
             Destroy(other.gameObject, 3);
+            pickUpNoise.Play();
             Debug.Log("Store Bone");
         }
         else

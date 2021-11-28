@@ -5,7 +5,7 @@ using UnityEngine;
 public class ToolCollision : MonoBehaviour
 {
 
-
+    public AudioSource digNoise;
     public World world;
     BlockType current;
     public DinoBlockManager dinoStoneCheck;
@@ -47,7 +47,7 @@ public class ToolCollision : MonoBehaviour
                     break;
                 case "DinoStone":
                     Debug.Log("Dino_Stone Struck");
-
+                    digNoise.Play();
                     dinoStoneCheck.RanSpawn(collision.transform.position);
                     break;
 

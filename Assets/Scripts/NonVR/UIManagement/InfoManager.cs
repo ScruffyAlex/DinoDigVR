@@ -12,15 +12,21 @@ public class InfoManager : MonoBehaviour
     public TextMeshProUGUI boneFact;
     public Transform panelLocation;
 
+    public GameObject LoadingScreen;
+    public GameObject LoadingRaptor;
+    
     bool panelActive;
+    bool loadActive = false;
 
     public float panelTimeRemaining;
+    public float loadTimeRemaining = 5;
     //public PlayerShot bullet;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         bonePanel.SetActive(false);
     }
 
@@ -41,6 +47,12 @@ public class InfoManager : MonoBehaviour
 
     private void Update()
     {
+        /*if (!loadActive)
+        {
+            StartCoroutine("Loading");
+        }*/
+
+
         if (panelActive)
         {
             if (panelTimeRemaining > 0)
@@ -57,5 +69,28 @@ public class InfoManager : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator LoadingScreenCo()
+    {
+        loadActive = true;
+        LoadingScreen.SetActive(true);
+        LoadingRaptor.SetActive(true);
+
+        if (loadTimeRemaining > 0)
+        {
+            //timeRemaining -= Time.deltaTime;
+            loadTimeRemaining -= Time.deltaTime;
+        }
+        else if (panelTimeRemaining < 0)
+        {
+            loadTimeRemaining = 0;
+            LoadingScreen.SetActive(false);
+            LoadingRaptor.SetActive(false);
+
+            panelActive = false;
+        }
+        loadTimeRemaining = 5;
+        yield return true;
     }
 }

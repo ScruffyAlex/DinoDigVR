@@ -8,11 +8,11 @@ public class PickedUpData : ScriptableObject
     static public bool megalodon1 = true;
     static public bool megalodon2;
     static public bool megalodon3;
-    static public bool trex1;
-    static public bool trex2;
-    static public bool trex3;
-    static public bool werewolf1;
-    static public bool werewolf2;
-    static public bool werewolf3;
+    static public bool velociraptor1 = true;
+    static public bool velociraptor2;
+    static public bool velociraptor3;
+    static public bool triceratops1 = true;
+    static public bool triceratops2;
+    static public bool triceratops3;
 
 }

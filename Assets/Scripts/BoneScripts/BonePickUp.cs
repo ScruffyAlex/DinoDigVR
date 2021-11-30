@@ -35,23 +35,23 @@ public class BonePickUp : MonoBehaviour
                 case "Megalodon 3":
                     PickedUpData.megalodon3 = true;
                     break;
-                case "Trex 1":
-                    PickedUpData.trex1 = true;
+                case "Triceratops 1":
+                    PickedUpData.triceratops1 = true;
                     break;
-                case "Trex 2":
-                    PickedUpData.trex2 = true;
+                case "Triceratops 2":
+                    PickedUpData.triceratops2 = true;
                     break;
-                case "Trex 3":
-                    PickedUpData.trex3 = true;
+                case "Triceratops 3":
+                    PickedUpData.triceratops3 = true;
                     break;
-                case "Werewolf 1":
-                    PickedUpData.werewolf1 = true;
+                case "Velociraptor 1":
+                    PickedUpData.velociraptor1 = true;
                     break;
-                case "Werewolf 2":
-                    PickedUpData.werewolf2 = true;
+                case "Velociraptor 2":
+                    PickedUpData.velociraptor2 = true;
                     break;
-                case "Werewolf 3":
-                    PickedUpData.werewolf3 = true;
+                case "Velociraptor 3":
+                    PickedUpData.velociraptor3 = true;
                     break;
             }
            

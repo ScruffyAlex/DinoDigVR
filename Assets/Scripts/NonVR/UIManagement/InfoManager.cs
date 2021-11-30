@@ -12,8 +12,7 @@ public class InfoManager : MonoBehaviour
     public TextMeshProUGUI boneFact;
     public Transform panelLocation;
 
-    public GameObject LoadingScreen;
-    public GameObject LoadingRaptor;
+
     
     bool panelActive;
     bool loadActive = false;
@@ -28,6 +27,7 @@ public class InfoManager : MonoBehaviour
     {
 
         bonePanel.SetActive(false);
+        
     }
 
     public void GetInfo(string name, string genus, string fact)
@@ -47,11 +47,8 @@ public class InfoManager : MonoBehaviour
 
     private void Update()
     {
-        /*if (!loadActive)
-        {
-            StartCoroutine("Loading");
-        }*/
 
+           
 
         if (panelActive)
         {
@@ -71,26 +68,5 @@ public class InfoManager : MonoBehaviour
 
     }
 
-    IEnumerator LoadingScreenCo()
-    {
-        loadActive = true;
-        LoadingScreen.SetActive(true);
-        LoadingRaptor.SetActive(true);
 
-        if (loadTimeRemaining > 0)
-        {
-            //timeRemaining -= Time.deltaTime;
-            loadTimeRemaining -= Time.deltaTime;
-        }
-        else if (panelTimeRemaining < 0)
-        {
-            loadTimeRemaining = 0;
-            LoadingScreen.SetActive(false);
-            LoadingRaptor.SetActive(false);
-
-            panelActive = false;
-        }
-        loadTimeRemaining = 5;
-        yield return true;
-    }
 }

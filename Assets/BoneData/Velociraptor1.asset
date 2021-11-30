@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6eaa8900199151e4fb646a407d04e67f, type: 3}
-  m_Name: Megalodon1
+  m_Name: Velociraptor1
   m_EditorClassIdentifier: 
-  CreatureName: Megalodon 1
-  OtherName: Big Tooth
-  CreatureFact: The word megalodon derives from Greek, meaning "giant tooth." The
-    shark's full scientific name is Carcharocles megalodon.
+  CreatureName: Velociraptor
+  OtherName: Swift Seizer
+  CreatureFact: Fossil evidence has led to Scientists believing that Velociraptors
+    had feathers.
   PieceNum: 1

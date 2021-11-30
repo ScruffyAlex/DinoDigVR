@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
 
-    public static GameState currentState = GameState.GAME;
+    public static GameState currentState = GameState.MUSEUM;
 
     public Camera gameCamera;
 

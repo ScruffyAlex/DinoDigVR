@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "noiseSettings", menuName = "Data/BoneData")]
+[CreateAssetMenu(fileName = "BoneData", menuName = "Data/BoneData")]
 public class BoneData : ScriptableObject
 {
     public string CreatureName;
-    public string ScientificName;
+    public string OtherName;
     public string CreatureFact;
     public int PieceNum;
 

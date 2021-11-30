@@ -28,7 +28,7 @@ public class Pickup : MonoBehaviour
     {
         if (collide.tag == "Player")
         {
-            collide.GetComponentInChildren<InfoManager>().GetInfo(boneData.name, boneData.ScientificName, boneData.CreatureFact);
+            collide.GetComponentInChildren<InfoManager>().GetInfo(boneData.name, boneData.CreatureName, boneData.CreatureFact);
         }
         //Debug.Log("Entered");
     }

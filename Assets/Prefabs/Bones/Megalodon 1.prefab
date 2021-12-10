@@ -18,6 +18,7 @@ MonoBehaviour:
   m_snapOffset: {fileID: 0}
   m_grabPoints:
   - {fileID: 2138965216654095197}
+  objectGrabbed: 0
 --- !u!1001 &2138965216800057154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,7 +71,12 @@ PrefabInstance:
     - target: {fileID: 86337534524561231, guid: 4e7f5293c9fbba941807dcafd182c9d0,
         type: 3}
       propertyPath: m_Name
-      value: PickupFish Variant
+      value: Megalodon 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 86337534524561231, guid: 4e7f5293c9fbba941807dcafd182c9d0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bone
       objectReference: {fileID: 0}
     - target: {fileID: 754752245638024693, guid: 4e7f5293c9fbba941807dcafd182c9d0,
         type: 3}

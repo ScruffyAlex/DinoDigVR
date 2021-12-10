@@ -14,6 +14,7 @@ public class World : MonoBehaviour
 
     public TerrainGenerator terrainGenerator;
     public Vector2Int mapSeedOffset;
+    public AudioSource dirtDig;
 
     //public Dictionary<Vector3Int, ChunkData> chunkDataDictionary = new Dictionary<Vector3Int, ChunkData>();
     //public Dictionary<Vector3Int, ChunkRenderer> chunkDictionary = new Dictionary<Vector3Int, ChunkRenderer>();
@@ -117,6 +118,7 @@ public class World : MonoBehaviour
 
     internal bool SetBlockCollision(Collision collision, BlockType blockType)
     {
+        dirtDig.Play();
         Debug.Log("In set block collision");
         ChunkRenderer chunk = collision.collider.GetComponent<ChunkRenderer>();
         if (chunk == null)

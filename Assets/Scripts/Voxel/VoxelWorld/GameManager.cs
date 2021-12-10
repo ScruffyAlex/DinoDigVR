@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
     private GameObject player;
+    public GameObject VRPlayer;
     public Vector3Int currentPlayerChunkPosition;
+    public Vector3Int currentVRPlayerChunkPosition;
     private Vector3Int currentChunkCenter = Vector3Int.zero;
 
     public World world;
@@ -18,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
 
-    public static GameState currentState = GameState.MUSEUM;
+    public static GameState currentState = GameState.TITLE;
 
     public Camera gameCamera;
 
@@ -47,13 +49,15 @@ public class GameManager : MonoBehaviour
         {
             world.GenerateWorld();
         }
-
         
+
+
     }
     public void SpawnPlayer()
     {
         if(player != null)
         {
+            
             return;
         }
         Vector3Int raycastStartPosition = new Vector3Int(world.chunkSize / 2, 100, world.chunkSize / 2);
@@ -61,18 +65,21 @@ public class GameManager : MonoBehaviour
         if (Physics.Raycast(raycastStartPosition, Vector3.down, out hit, 120))
         {
             player = Instantiate(playerPrefab, hit.point + Vector3Int.up, Quaternion.identity);
+            VRPlayer = player.transform.GetChild(0).transform.gameObject;
             StartCheckingTheMap();
         }
     }
 
     public void StartCheckingTheMap()
     {
-        SetCurrentChunkCoordinates();
+        //SetCurrentChunkCoordinates();
+        SetCurrentChunkCoordinatesVR();
         StopAllCoroutines();
-        StartCoroutine(CheckIfShouldLoadNextPosition());
+        //StartCoroutine(CheckIfShouldLoadNextPosition());
+        StartCoroutine(CheckIfShouldLoadNextPositionVR());
     }
 
-    IEnumerator CheckIfShouldLoadNextPosition()
+/*    IEnumerator CheckIfShouldLoadNextPosition()
     {
         yield return new WaitForSeconds(detectionTime);
         if (
@@ -87,11 +94,38 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(CheckIfShouldLoadNextPosition());
         }
+    }*/
+
+
+    IEnumerator CheckIfShouldLoadNextPositionVR()
+    {
+        yield return new WaitForSeconds(detectionTime);
+        Debug.Log("Start Check if Should Load Next Position VR");
+        if (
+            Mathf.Abs(currentChunkCenter.x - VRPlayer.transform.position.x) > world.chunkSize ||
+            Mathf.Abs(currentChunkCenter.z - VRPlayer.transform.position.z) > world.chunkSize ||
+            (Mathf.Abs(currentPlayerChunkPosition.y - VRPlayer.transform.position.y) > world.chunkHeight)
+            )
+        {
+            Debug.Log("Check");
+            world.LoadAdditionalChunksRequest(VRPlayer);
+        }
+        else
+        {
+            StartCoroutine(CheckIfShouldLoadNextPositionVR());
+        }
     }
 
     private void SetCurrentChunkCoordinates()
     {
         currentPlayerChunkPosition = WorldDataHelper.ChunkPositionFromBlockCoords(world, Vector3Int.RoundToInt(player.transform.position));
+        currentChunkCenter.x = currentPlayerChunkPosition.x + world.chunkSize / 2;
+        currentChunkCenter.z = currentPlayerChunkPosition.z + world.chunkSize / 2;
+    }
+
+    private void SetCurrentChunkCoordinatesVR()
+    {
+        currentVRPlayerChunkPosition = WorldDataHelper.ChunkPositionFromBlockCoords(world, Vector3Int.RoundToInt(VRPlayer.transform.position));
         currentChunkCenter.x = currentPlayerChunkPosition.x + world.chunkSize / 2;
         currentChunkCenter.z = currentPlayerChunkPosition.z + world.chunkSize / 2;
     }

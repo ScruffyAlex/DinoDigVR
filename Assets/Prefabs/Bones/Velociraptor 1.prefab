@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 2061973596075864077, guid: c351a54b0c75ae640b81fe824bb85bff,
         type: 3}
       propertyPath: m_Name
-      value: VelociraptorSkull
+      value: Velociraptor 1
       objectReference: {fileID: 0}
     - target: {fileID: 2061973596075864077, guid: c351a54b0c75ae640b81fe824bb85bff,
         type: 3}
